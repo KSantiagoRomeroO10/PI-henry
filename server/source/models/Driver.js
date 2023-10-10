@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+const sequelize = require('./Connection');
 
 const Driver = sequelize.define('Driver', {
   id: {
