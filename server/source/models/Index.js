@@ -5,4 +5,4 @@ const Team = require('./Team');
 Driver.belongsToMany(Team, { through: 'DriverTeam' });
 Team.belongsToMany(Driver, { through: 'DriverTeam' });
 
-module.exports = sequelize;
+module.exports = { sequelize, Driver, Team};
