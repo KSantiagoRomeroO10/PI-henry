@@ -1,11 +1,14 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./Connection');
+const { v4 } = require('uuid'); // Importa la función UUIDv4 de la librería uuid
+//const { v4: uuidv4 } = require('uuid'); 
 
 const Driver = sequelize.define('Driver', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true,
+    defaultValue: () => v4(), // Genera automáticamente un UUID al insertar un registro
+    allowNull: false,
   },
   nombre: {
     type: DataTypes.STRING,

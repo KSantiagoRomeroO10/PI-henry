@@ -1,17 +1,14 @@
-const { sequelize } = require('./models/Index');
+const sequelize = require('./models/Index');
 
 const express = require('express');
-
-// Crear una instancia de Express
 const app = express();
 
-// Configurar el puerto en el que deseas que el servidor escuche
-const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
 
-// Ruta de ejemplo
-app.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
-});
+const router = require('./routes/Index');
+
+// Configurar el puerto en el que deseas que el servidor escuche
+const PORT = 5000;
 
 // Definir una función asincrónica para inicializar la base de datos
 const initializeDatabase = async () => {
@@ -28,10 +25,13 @@ const initializeDatabase = async () => {
   catch (error) {
     console.error('Error al sincronizar la base de datos:', error);
   }
-  finally {
-    sequelize.close(); // Cierra la conexión a la base de datos al finalizar
-  }
 };
+
+// Middleware
+app.use(express.json());
+
+// Cargar rutas
+app.use(router);
 
 // Iniciar el servidor en el puerto 5000 y luego inicializar la base de datos
 app.listen(PORT, () => {
