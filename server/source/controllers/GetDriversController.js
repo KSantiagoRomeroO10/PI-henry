@@ -1,21 +1,59 @@
-const Driver = require('../models/Driver');
+const Driver = require('../models/Driver')
+const axios = require('axios')
 
 const GetDriversController = async (req, res) => {
   try {
-    const drivers = await Driver.findAll({logging:false});
-    const defaultImageUrl = 'default_image_url_here';
+    
+    const defaultImageUrl = 'https://www.debate.com.mx/__export/1488158670038/sites/debate/img/2017/02/26/14696101163013_crop1488158525474.jpg_172596871.jpg'
 
-    if (drivers.length === 0) {
-      res.status(404).json({ mensaje: 'No hay datos' });
+    const drivers = await Driver.findAll({logging:false})
+    
+    const driversWithImages = drivers.map(driver => ({
+      ...driver.dataValues,
+      imagen: driver.imagen || defaultImageUrl
+    }))
+
+    const apiResponse = await axios.get('http://localhost:5000/drivers')
+    const apiDrivers = apiResponse.data
+
+    const addDefaultImageIfMissing = (driver) => {
+      if (!driver.image || !driver.image.url) {
+        return {
+          ...driver,
+          image: {
+            url: defaultImageUrl,
+            imageby: 'Default Image'
+          }
+        }
+      }
+      return driver;
     }
-    else{
-      const driversWithImages = drivers.map(driver => ({
-        ...driver.dataValues,
-        imagen: driver.imagen || defaultImageUrl,
-      }));
+
+    const apiDriversWithImages = apiDrivers.map(addDefaultImageIfMissing)
+
+    if(drivers.length == 0 && apiDrivers.length == 0){
+
+      res.status(404).json({ mensaje: 'No hay datos' })
+
+    }
+    else if(drivers.length > 0 && apiDrivers.length > 0){
+
+      const allDrivers = {"Api": apiDriversWithImages, "Base de datos": driversWithImages}
   
-      res.status(200).json(driversWithImages);
+      res.status(200).json({"Api concatenada con la Base de datos":allDrivers});
+
     }
+    else if(drivers.length == 0 && apiDrivers.length > 0){
+  
+      res.status(200).json({"Api": apiDriversWithImages, "Base de datos": "Vacia"});
+
+    }
+    else if(drivers.length > 0 && apiDrivers.length == 0){
+
+      res.status(200).json({"Api": "Vacia", "Base de datos": driversWithImages});
+      
+    }
+
   }
   catch (error) {
     console.error('Error al recuperar drivers:', error);

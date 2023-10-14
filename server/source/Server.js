@@ -6,7 +6,7 @@ const synchronizeDB = require('./models/SynchronizeDB');
 const router = require('./routes/Index');
 
 // Configurar el puerto en el que deseas que el servidor escuche
-const PORT = 5000;
+const PORT = 3001;
 
 // Middleware
 app.use(express.json());
