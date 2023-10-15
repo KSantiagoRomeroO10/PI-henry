@@ -10,8 +10,7 @@ const PostDriverController = async (req, res) => {
         descripcion,
         imagen,
         nacionalidad,
-        fechaNacimiento,
-        logging:false
+        fechaNacimiento
       }
     );
 

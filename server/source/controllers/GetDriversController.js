@@ -6,7 +6,7 @@ const GetDriversController = async (req, res) => {
     
     const defaultImageUrl = 'https://www.debate.com.mx/__export/1488158670038/sites/debate/img/2017/02/26/14696101163013_crop1488158525474.jpg_172596871.jpg'
 
-    const drivers = await Driver.findAll({logging:false})
+    const drivers = await Driver.findAll()
     
     const driversWithImages = drivers.map(driver => ({
       ...driver.dataValues,

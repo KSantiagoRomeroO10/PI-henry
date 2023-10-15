@@ -1,14 +1,18 @@
 const express = require('express')
 const router = express.Router()
 
-const getDriversRoute = require('./GetDriversRoute')
+const GetDriversRoute = require('./GetDriversRoute')
 const GetDriverIdDetailRoute = require('./GetDriverIdDetailRoute')
-const getDriversByNameRoute = require('./GetDriversByNameRoute')
+const GetDriversByNameRoute = require('./GetDriversByNameRoute')
+const GetTeamsRoute = require('./GetTeamsRoute')
+
 const PostDriverRoute = require('./PostDriverRoute')
 
-router.use('/get', getDriversRoute) // http://localhost:3001/get/drivers
+router.use('/get', GetDriversRoute) // http://localhost:3001/get/drivers
 router.use('/get', GetDriverIdDetailRoute)  // http://localhost:3001/get/drivers/:idDriver
-router.use('/get', getDriversByNameRoute) // http://localhost:3001/get/name?name=Heikki
+router.use('/get', GetDriversByNameRoute) // http://localhost:3001/get/name?name=Heikki
+router.use('/get', GetTeamsRoute) // http://localhost:3001/post/teams
+
 router.use('/post', PostDriverRoute) // http://localhost:3001/post/drivers
 
 module.exports = router

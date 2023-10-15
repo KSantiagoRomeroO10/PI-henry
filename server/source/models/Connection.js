@@ -9,7 +9,8 @@ const sequelize = new Sequelize({
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  logging: false
 });
 
 module.exports = sequelize;

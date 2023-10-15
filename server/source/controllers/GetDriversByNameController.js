@@ -12,8 +12,7 @@ const GetDriversByNameController = async (req, res) => {
           [Op.iLike]: `%${name}%`,
         },
       },
-      limit: 15,
-      logging: false
+      limit: 15
     });
 
     const apiResponse = await axios.get(`http://localhost:5000/drivers?name.forename=${name}`);

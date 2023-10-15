@@ -7,10 +7,7 @@ const GetDriverIdDetailController = async (req, res) => {
   try {
     const { idDriver } = req.params;
     
-    const driver = await Driver.findByPk(idDriver, {
-      include: Team,
-      logging:false
-    });
+    const driver = await Driver.findByPk(idDriver, { include: Team });
 
     const apiResponse = await axios.get(`http://localhost:5000/drivers/${idDriver}`);
     const apiDriver = apiResponse.data;
