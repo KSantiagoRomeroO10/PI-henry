@@ -10,7 +10,7 @@ const SynchronizeDB = async () => {
       logging:false
     }); // Cambia a true para eliminar y recrear las tablas en cada ejecución
 
-    console.log('Base de datos sincronizada exitosamente');
+    console.log('Base de datos sincronizada exitósamente');
   }
   catch (error) {
     console.error('Error al sincronizar la base de datos:', error);

@@ -3,7 +3,7 @@ const Team = require('../models/Team');
 
 const axios = require('axios')
 
-const GetDriverDetailController = async (req, res) => {
+const GetDriverIdDetailController = async (req, res) => {
   try {
     const { idDriver } = req.params;
     
@@ -30,4 +30,4 @@ const GetDriverDetailController = async (req, res) => {
   }
 };
 
-module.exports = GetDriverDetailController;
+module.exports = { GetDriverIdDetailController };

@@ -10,7 +10,7 @@ const GetDriversController = async (req, res) => {
     
     const driversWithImages = drivers.map(driver => ({
       ...driver.dataValues,
-      imagen: driver.imagen || defaultImageUrl
+      imagen: (!driver.imagen === 'No imagen' && driver.imagen) || defaultImageUrl
     }))
 
     const apiResponse = await axios.get('http://localhost:5000/drivers')
@@ -33,24 +33,22 @@ const GetDriversController = async (req, res) => {
 
     if(drivers.length == 0 && apiDrivers.length == 0){
 
-      res.status(404).json({ mensaje: 'No hay datos' })
+      res.status(404).json({ Api: 'No hay datos.', "Base de datos": 'No hay datos.' })
 
     }
     else if(drivers.length > 0 && apiDrivers.length > 0){
-
-      const allDrivers = {"Api": apiDriversWithImages, "Base de datos": driversWithImages}
   
-      res.status(200).json({"Api concatenada con la Base de datos":allDrivers});
+      res.status(200).json({Api: apiDriversWithImages, 'Base de datos': driversWithImages});
 
     }
     else if(drivers.length == 0 && apiDrivers.length > 0){
   
-      res.status(200).json({"Api": apiDriversWithImages, "Base de datos": "Vacia"});
+      res.status(200).json({Api: apiDriversWithImages, 'Base de datos': 'Vacia'});
 
     }
     else if(drivers.length > 0 && apiDrivers.length == 0){
 
-      res.status(200).json({"Api": "Vacia", "Base de datos": driversWithImages});
+      res.status(200).json({Api: 'Vacia', 'Base de datos': driversWithImages});
       
     }
 

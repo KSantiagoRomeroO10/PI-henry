@@ -30,7 +30,7 @@ const Driver = sequelize.define('Driver', {
   fechaNacimiento: {
     type: DataTypes.DATEONLY,
     allowNull: false
-  },
+  }
 });
 
 module.exports = Driver;

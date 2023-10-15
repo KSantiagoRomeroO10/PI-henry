@@ -10,7 +10,7 @@ const Team = sequelize.define('Team', {
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
+  }
 });
 
 module.exports = Team;
