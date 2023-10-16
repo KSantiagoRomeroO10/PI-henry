@@ -41,6 +41,6 @@ module.exports = { PostDriverController };
 //   "imagen": "URL de la imagen del conductor",
 //   "nacionalidad": "Nacionalidad del conductor",
 //   "fechaNacimiento": "1998-12-10",
-//   "teams": ["sdddddd", "skldfjaklñsdf", "asdf"]
+//   "teams": ["equipo1", "equipo2", "equipo3"]
 // }
 
