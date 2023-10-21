@@ -1,0 +1,9 @@
+.navBar{
+  background-color: #0f0f0fec;
+  height: 50px;
+  padding: 15px;
+}
+
+.name{
+  float: left;
+}

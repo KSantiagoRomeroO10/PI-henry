@@ -11,10 +11,10 @@ const SearchName = ({ requestByName }) => {
   }
 
   return(
-    <>
-      <input type="text" onChange={handleChange} value={name} placeholder="Name of driver" name="buttonRequestName"/>
+    <div className='searchName'>
+      <input type="text" onChange={handleChange} value={name} placeholder="Name of driver" className="inputRequestName"/>
       <button onClick={() => { requestByName(name); setName('') }} className="buttonRequestName">Search Driver</button>
-    </>
+    </div>
   )
 }
 

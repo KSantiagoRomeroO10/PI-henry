@@ -5,12 +5,10 @@ import SearchName from './SearchName/SearchName'
 const Navbar = ({ requestByName }) => {
 
   return (
-    <>
-      <header>
-        <h1>Santiago Romero</h1>
+    <header className='navBar'>
+        <h1 className='name'>Santiago Romero</h1>
         <SearchName requestByName={requestByName}/>
-      </header>
-    </>
+    </header>
   )
   
 }
