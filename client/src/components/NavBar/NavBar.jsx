@@ -12,6 +12,7 @@ const Navbar = ({ requestByName }) => {
           <h1 className='name'>Santiago Romero</h1>
         </NavLink>
         <ButtonCreate/>
+        <a href="/random" className='random'>Random</a>  
         <SearchName requestByName={requestByName}/>
     </header>
   )

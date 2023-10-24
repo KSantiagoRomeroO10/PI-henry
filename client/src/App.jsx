@@ -8,6 +8,7 @@ import NavBar from './components/NavBar/NavBar'
 import Cards from './components/Cards/Cards'
 import Detail from './components/Detail/Detail'
 import Form from './components/Form/Form'
+import Random from './components/Random/Random'
 
 import axios from 'axios'
 
@@ -54,6 +55,7 @@ function App() {
         <Route path='/home' element={ <Cards drivers={drivers}/> }/>
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/form' element={<Form/>}/>
+        <Route path='/random' element={<Random/>}/>
       </Routes>
     </>
   )
