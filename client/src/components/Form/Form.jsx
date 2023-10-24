@@ -3,7 +3,7 @@ import './Form.css'
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { validateName, validateTeams } from './Validation'
+import { validateString, validateTeams } from './Validation'
 
 const Form = () => {
   const [nombre, setNombre] = useState('')
@@ -15,50 +15,94 @@ const Form = () => {
   const [teams, setTeams] = useState([])
 
   const [nameError, setNameError] = useState('')
+  const [apellidoError, setApellidoError] = useState('')
+  const [nacionalidadError, setNacionalidadError] = useState('')
   const [teamsError, setTeamsError] = useState('')
 
-  const handleNameChange = (e) => {
+  const [resp, setresp] = useState('')
+  const [faltanEspa, setFaltanEspa] = useState('')
+
+  const handleApellidoChange = (e) => {
     const name = e.target.value
-    if (!validateName(name)) {
+    if (!validateString(name)) {
+      setApellidoError('Solo se aceptan letras en el nombre')
+    } 
+    else {
+      setApellidoError('')
+    }
+    setApellido(name)
+  }
+
+  const handleNameChange = (e) => {
+    const apellido = e.target.value
+    if (!validateString(apellido)) {
       setNameError('Solo se aceptan letras en el nombre')
-    } else {
+    } 
+    else {
       setNameError('')
     }
-    setNombre(name)
+    setNombre(apellido)
+  }
+
+  const handleNacionalidadChange = (e) => {
+    const nacionalidad = e.target.value
+    if (!validateString(nacionalidad)) {
+      setNacionalidadError('Solo se aceptan letras en la nacionalidad')
+    } 
+    else {
+      setNacionalidadError('')
+    }
+    setNacionalidad(nacionalidad)
   }
 
   const handleTeamsChange = (e) => {
     const teams = e.target.value
     if (!validateTeams(teams)) {
       setTeamsError('Solo se aceptan letras, números y comas para separar los equipos')
-    } else {
+    } 
+    else {
       setTeamsError('')
     }
     setTeams(teams.split(',').map((team) => team.trim()))
   }
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
-    const newDriverData = {
-      nombre,
-      apellido,
-      descripcion,
-      imagen,
-      nacionalidad,
-      fechaNacimiento,
-      teams
-    };
+    if(nombre && apellido && descripcion && imagen && nacionalidad && fechaNacimiento && teams){
 
-    try {
-      const response = await axios.post('http://localhost:3001/post/drivers', newDriverData)
-      console.log(response.data)
-    } 
-    catch (error) {
-      console.error(error)
+      const newDriverData = {
+        nombre,
+        apellido,
+        descripcion,
+        imagen,
+        nacionalidad,
+        fechaNacimiento,
+        teams
+      }
+  
+      try {
+        const response = await axios.post('http://localhost:3001/post/drivers', newDriverData)
+        setresp(response.data)
+        reiniciar()
+        setTimeout(() => {
+          setresp('');
+        }, 4000)
+      } 
+      catch (error) {
+        console.error(error)
+      }
+
+    }
+    else{
+      setFaltanEspa('Todos los campos no esta llenos, por favor rellene todo el formulario')
+      setTimeout(() => {
+        setFaltanEspa('')
+      }, 4000)
     }
 
-  };
+  }
 
   const reiniciar = () => {
     setNombre('')
@@ -68,7 +112,14 @@ const Form = () => {
     setNacionalidad('')
     setFechaNacimiento('')
     setTeams([])
+
+    setNameError('')
+    setApellidoError('')
+    setNacionalidadError('')
+    setTeamsError('')
+
   }
+
 
   return (
     <>
@@ -85,8 +136,9 @@ const Form = () => {
           type="text"
           placeholder="Apellido"
           value={apellido}
-          onChange={(e) => setApellido(e.target.value)}
+          onChange={handleApellidoChange}
         />
+        {apellidoError && <p style={{ color: 'red' }}>{apellidoError}</p>}
         <br />
         <input
           type="text"
@@ -106,8 +158,9 @@ const Form = () => {
           type="text"
           placeholder="Nacionalidad"
           value={nacionalidad}
-          onChange={(e) => setNacionalidad(e.target.value)}
+          onChange={handleNacionalidadChange}
         />
+        {nacionalidadError && <p style={{ color: 'red' }}>{nacionalidadError}</p>}
         <br />
         <input
           type="date"
@@ -125,6 +178,8 @@ const Form = () => {
         {teamsError && <p style={{ color: 'red' }}>{teamsError}</p>}
         <br />
         <button type="submit">Agregar Conductor</button>
+        {resp && <p style={{ color: 'green' }}>{resp.mensaje}</p>}
+        {faltanEspa && <p style={{ color: 'red' }}>{faltanEspa}</p>}
       </form>
       <button type="submit" className='reiniciar' onClick={() => {reiniciar()}}>Reiniciar</button>
     </>

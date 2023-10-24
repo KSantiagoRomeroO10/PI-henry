@@ -2,6 +2,8 @@ import './SearchName.css'
 
 import { useState } from "react"
 
+import { NavLink } from 'react-router-dom';
+
 const SearchName = ({ requestByName }) => {
 
   const [name, setName] = useState('')
@@ -13,7 +15,9 @@ const SearchName = ({ requestByName }) => {
   return(
     <div className='searchName'>
       <input type="text" onChange={handleChange} value={name} placeholder="Name of driver" className="inputRequestName"/>
-      <button onClick={() => { requestByName(name); setName('') }} className="buttonRequestName">Search Driver</button>
+      <NavLink to={`/home`}>
+        <button onClick={() => { requestByName(name); setName('') }} className="buttonRequestName">Search Driver</button>
+      </NavLink>
     </div>
   )
 }

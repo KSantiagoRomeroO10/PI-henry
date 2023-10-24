@@ -3,7 +3,7 @@ import './Card.css'
 import { NavLink } from 'react-router-dom';
 
 const Card = ({ id, name, image, teams}) => {
-  const teamsString = teams.join(', ');
+  const teamsString = teams ? teams.join(', ') : ''
   return(
     <NavLink to={`/detail/${id}`} className='navLink'>
       <div className='card'>

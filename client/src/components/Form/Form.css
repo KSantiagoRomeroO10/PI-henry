@@ -9,6 +9,10 @@
   border-radius: 10px;
 }
 
+button{
+  color: white;
+}
+
 .form input, .form button, .reiniciar{
   padding: 5px;
   margin: 10px;
@@ -22,4 +26,10 @@
 
 .form button:hover, .reiniciar:hover{
   cursor: pointer;
+}
+
+.reiniciar{
+  float: left;
+  margin-left: 25%;
+  margin-top: 5%;
 }
