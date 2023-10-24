@@ -1,0 +1,25 @@
+.form{
+  position: absolute;
+  top: 57.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #0f0f0fec;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.form input, .form button{
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  color: black;
+}
+
+.form button{
+  background-color: #79070a;
+}
+
+.form button:hover{
+  cursor: pointer;
+}

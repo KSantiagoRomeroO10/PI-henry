@@ -7,6 +7,7 @@ import Landing from './components/Landing/Landing'
 import NavBar from './components/NavBar/NavBar'
 import Cards from './components/Cards/Cards'
 import Detail from './components/Detail/Detail'
+import Form from './components/Form/Form'
 
 import axios from 'axios'
 
@@ -17,9 +18,6 @@ function App() {
   const location = useLocation();
 
   const UrlBase = 'http://localhost:3001/'
-
-  //const UrlBase3 = 'http://localhost:3001/get/teams'
-  //const UrlBase4 = 'http://localhost:3001/post/drivers'
 
   const requestByName = (name) => {
 
@@ -53,8 +51,10 @@ function App() {
       }
       <Routes>
         <Route path='/' element={ <Landing/> }/>
-        <Route path='/Home' element={ <Cards drivers={drivers}/> }/>
-        <Route path='detail/:id' element={<Detail/>}/>
+        <Route path='/home' element={ <Cards drivers={drivers}/> }/>
+        <Route path='/detail/:id' element={<Detail/>}/>
+        <Route path='/form' element={<Form/>}/>
+
       </Routes>
     </>
   )
