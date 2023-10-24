@@ -27,27 +27,31 @@ const Detail = () =>{
     return setDriver({});
   }, [id]);
   
-  console.log(driver);
+  let teamsString
+
+  if (driver.teams && driver.teams.length) {
+    teamsString = driver.teams.join(', ') // Convertir el array en una cadena separada por comas y espacios
+  }
 
   return(
     <div className='container'>
       <div className='divImg'>
-        <img src={driver.image?.url} alt='Error no hay imagen.' className='image'/>
+        <img src={driver.imagen} alt='Error no hay imagen.' className='image'/>
       </div>
       <div className='content'>
         <p><span className='title'>Id:</span> {id}</p>
         <br />
-        <p><span className='title'>Forename:</span> {driver['name']?.['forename']}</p>
+        <p><span className='title'>Forename:</span> {driver.Dates?.nombre}</p>
         <br />
-        <p><span className='title'>Surname:</span> {driver['name']?.['surname']}</p>      {/* chining operator */}
+        <p><span className='title'>Surname:</span> {driver?.apellido}</p>
         <br />
-        <p><span className='title'>Nationality:</span> {driver?.['nationality']}</p>
+        <p><span className='title'>Nationality:</span> {driver?.nacionalidad}</p>
         <br />
-        <p><span className='title'>Birth Date:</span> {driver?.['dob']}</p>
+        <p><span className='title'>Birth Date:</span> {driver?.fechaNacimiento}</p>
         <br />
-        <p><span className='title'>Teams:</span> {driver?.['teams']}</p>
+        <p><span className='title'>Teams:</span> {teamsString}</p>
         <br />
-        <p><span className='title'>Description:</span> {driver?.['description']}</p>
+        <p><span className='title'>Description:</span> {driver?.descripcion}</p>
       </div>
     </div>
   )

@@ -13,8 +13,6 @@ const GetDriversController = async (req, res) => {
     const apiDrivers = apiResponse.data
     const apiConvert = apiDrivers.map(driver => convertApiDataToModelFormat(driver))
     
-    console.log(apiConvert);
-
     const drivers = [...apiConvert, ...dbResponse]
 
     const driversWithImages = drivers.map(driver => ({

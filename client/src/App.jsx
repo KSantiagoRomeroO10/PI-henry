@@ -44,18 +44,6 @@ function App() {
     axios.get(`${UrlBase}get/drivers`)
     .then(response => response.data)
     .then((data) => {
-      if(data['Api'] !== 'Vacia' && data['Base de datos'] !== 'Vacia'){
-        data = [...data['Api'], ...data['Base de datos']]
-      }
-      else if(data['Api'] !== 'Vacia' && data['Base de datos'] === 'Vacia'){
-        data = data['Api']
-      }
-      else if(data['Api'] === 'Vacia' && data['Base de datos'] !== 'Vacia'){
-        data = data['Base de datos']
-      }
-      else if(data['Api'] === 'Vacia' && data['Base de datos'] === 'Vacia'){
-        data = []
-      }
       setDrivers(data)
     })
   }, [])
@@ -67,7 +55,7 @@ function App() {
       }
       <Routes>
         <Route path='/' element={ <Landing/> }/>
-        <Route path='/Home' element={ <Cards drivers={drivers}/> }/>
+        <Route path='/Home' element={ <Cards drivers={drivers.Dates}/> }/>
         <Route path='detail/:id' element={<Detail/>}/>
       </Routes>
     </>

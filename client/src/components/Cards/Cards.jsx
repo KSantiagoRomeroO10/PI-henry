@@ -24,7 +24,8 @@ const Cards = ({ drivers }) => {
     setCurrentPage(pageNumber);
   };
 
-  console.log(sections)
+  console.log(sections.length)
+  
   return (
     <div className='cards'>    
       <div className='content'>
@@ -33,18 +34,14 @@ const Cards = ({ drivers }) => {
             const currentCards = []
 
             for (let i = 0; i < section.length; i++) {
-              let id = section[i].id 
-              let imageUrl = section[i].image['url']
-              let nameF = section[i].name['forename']
-              let teams = section[i].teams
-              
+   
               currentCards.push(
                 <Card
-                  key={id}
-                  id={id}
-                  nameF={nameF}
-                  imageUrl={imageUrl}
-                  teams={teams}                  
+                  key={section[i].id}
+                  id={section[i].id}
+                  name={section[i].nombre}
+                  image={section[i].imagen}
+                  teams={section[i].teams}                  
                 />
               )
             }
