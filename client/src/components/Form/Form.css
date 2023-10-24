@@ -9,17 +9,17 @@
   border-radius: 10px;
 }
 
-.form input, .form button{
+.form input, .form button, .reiniciar{
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
   color: black;
 }
 
-.form button{
+.form button, .reiniciar{
   background-color: #79070a;
 }
 
-.form button:hover{
+.form button:hover, .reiniciar:hover{
   cursor: pointer;
 }

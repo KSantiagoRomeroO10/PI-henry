@@ -60,61 +60,74 @@ const Form = () => {
 
   };
 
+  const reiniciar = () => {
+    setNombre('')
+    setApellido('')
+    setDescripcion('')
+    setImagen('')
+    setNacionalidad('')
+    setFechaNacimiento('')
+    setTeams([])
+  }
+
   return (
-    <form onSubmit={handleSubmit} className='form'>
-      <input
-        type="text"
-        placeholder="Nombre"
-        value={nombre}
-        onChange={handleNameChange}
-      />
-      {nameError && <p style={{ color: 'red' }}>{nameError}</p>}
-      <br />
-      <input
-        type="text"
-        placeholder="Apellido"
-        value={apellido}
-        onChange={(e) => setApellido(e.target.value)}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Descripcion"
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Imagen URL"
-        value={imagen}
-        onChange={(e) => setImagen(e.target.value)}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Nacionalidad"
-        value={nacionalidad}
-        onChange={(e) => setNacionalidad(e.target.value)}
-      />
-      <br />
-      <input
-        type="date"
-        placeholder="Fecha de Nacimiento"
-        value={fechaNacimiento}
-        onChange={(e) => setFechaNacimiento(e.target.value)}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Teams"
-        value={teams}
-        onChange={handleTeamsChange}
-      />
-      {teamsError && <p style={{ color: 'red' }}>{teamsError}</p>}
-      <br />
-      <button type="submit">Agregar Conductor</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className='form'>
+        <input
+          type="text"
+          placeholder="Nombre"
+          value={nombre}
+          onChange={handleNameChange}
+        />
+        {nameError && <p style={{ color: 'red' }}>{nameError}</p>}
+        <br />
+        <input
+          type="text"
+          placeholder="Apellido"
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Descripcion"
+          value={descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Imagen URL"
+          value={imagen}
+          onChange={(e) => setImagen(e.target.value)}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Nacionalidad"
+          value={nacionalidad}
+          onChange={(e) => setNacionalidad(e.target.value)}
+        />
+        <br />
+        <input
+          type="date"
+          placeholder="Fecha de Nacimiento"
+          value={fechaNacimiento}
+          onChange={(e) => setFechaNacimiento(e.target.value)}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Teams: equipo1,equipo2"
+          value={teams}
+          onChange={handleTeamsChange}
+        />
+        {teamsError && <p style={{ color: 'red' }}>{teamsError}</p>}
+        <br />
+        <button type="submit">Agregar Conductor</button>
+      </form>
+      <button type="submit" className='reiniciar' onClick={() => {reiniciar()}}>Reiniciar</button>
+    </>
   );
 };
 
