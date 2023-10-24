@@ -15,13 +15,22 @@ const GetDriversController = async (req, res) => {
     
     const drivers = [...apiConvert, ...dbResponse]
 
-    const driversWithImages = drivers.map(driver => ({
-      ...driver.dataValues,
-      imagen: (!driver.imagen === 'No imagen' && driver.imagen) || defaultImageUrl
-    }))
-
-    if(drivers){
-      res.status(200).json({ Dates: drivers });
+    const driversWithImages = drivers.map(driver => {
+      if (driver.imagen && driver.imagen !== 'No imagen' && driver.imagen !== "") {
+        return {
+          ...driver,
+          imagen: driver.imagen
+        };
+      } else {
+        return {
+          ...driver,
+          imagen: defaultImageUrl
+        };
+      }
+    });
+    
+    if(driversWithImages){
+      res.status(200).json({ Dates: driversWithImages});
     }
     else{
       res.status(404).json({ Dates: 'No hay datos.' })

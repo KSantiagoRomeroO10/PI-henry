@@ -12,16 +12,12 @@ import axios from 'axios'
 
 function App() {
 
-  const [driversByName, setDriversByName] = useState([]);
   const [drivers, setDrivers] = useState([]);
-
-  console.log(driversByName);
 
   const location = useLocation();
 
   const UrlBase = 'http://localhost:3001/'
 
-  //const UrlBase2 = 'http://localhost:3001/get/name?name='
   //const UrlBase3 = 'http://localhost:3001/get/teams'
   //const UrlBase4 = 'http://localhost:3001/post/drivers'
 
@@ -35,16 +31,18 @@ function App() {
     axios.get(`${UrlBase}get/name?name=${name}`)
     .then(response => response.data)
     .then((data) => {
-      setDriversByName(data)
+      setDrivers(data.Drivers)
+      console.log(data);
     })
     
+
   }
   
   useEffect(() => {
     axios.get(`${UrlBase}get/drivers`)
     .then(response => response.data)
     .then((data) => {
-      setDrivers(data)
+      setDrivers(data.Dates)
     })
   }, [])
 
@@ -55,7 +53,7 @@ function App() {
       }
       <Routes>
         <Route path='/' element={ <Landing/> }/>
-        <Route path='/Home' element={ <Cards drivers={drivers.Dates}/> }/>
+        <Route path='/Home' element={ <Cards drivers={drivers}/> }/>
         <Route path='detail/:id' element={<Detail/>}/>
       </Routes>
     </>

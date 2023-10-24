@@ -24,8 +24,6 @@ const Cards = ({ drivers }) => {
     setCurrentPage(pageNumber);
   };
 
-  console.log(sections.length)
-  
   return (
     <div className='cards'>    
       <div className='content'>
