@@ -3,6 +3,8 @@ const Team = require('../models/Team');
 
 const axios = require('axios')
 
+const convertApiDataToModelFormat = require('../converters/converterApiToModel');
+
 const GetDriverIdDetailController = async (req, res) => {
   try {
     const { idDriver } = req.params;
@@ -17,8 +19,8 @@ const GetDriverIdDetailController = async (req, res) => {
       return res.status(404).json({ mensaje: 'Driver no encontrado en la Base de Datos.' });
       
     }
-
-    res.json(driver || apiDriver);
+    
+    res.json(driver || convertApiDataToModelFormat(apiDriver));
   }
   catch (error) {
     if (error.response && error.response.status === 404) {

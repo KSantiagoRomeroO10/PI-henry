@@ -1,10 +1,39 @@
 const { Driver, Team } = require('../models/Index');
 
+const axios = require('axios')
+
 const PostDriverController = async (req, res) => {
+
   const { nombre, apellido, descripcion, imagen, nacionalidad, fechaNacimiento, teams } = req.body;
 
   try {
+
+    const apiResponse = await axios.get('http://localhost:5000/drivers')
+    const apiDrivers = apiResponse.data
+    let lastIdApiDrivers
+
+    if (apiDrivers && apiDrivers.length > 0) {
+      const sortedDrivers = apiDrivers.sort((a, b) => b.id - a.id);
+      lastIdApiDrivers = sortedDrivers[0].id;
+    }
+
+    let lastId = 0
+
+    await Driver.max('id', { raw: true })
+    .then(maxId => {
+      if(maxId > 0){
+        lastId = maxId+2
+      }
+      else{
+        lastId = lastIdApiDrivers+1
+      }
+    })
+    .catch(err => {
+      errorLastError = err
+    });
+    
     const newDriver = await Driver.create({
+        id: lastId,
         nombre,
         apellido,
         descripcion,
@@ -24,10 +53,11 @@ const PostDriverController = async (req, res) => {
       }
     }
 
-    res.status(201).json({ mensaje: 'Conductor creado exitosamente.' });
+    res.status(201).json({ mensaje: 'Conductor creado exitosamente.'});
   } 
   catch (error) {
-    res.status(500).json({ mensaje: 'Error interno del servidor al crear el conductor.', error: error.message});
+    res.status(500).json({ 
+      mensaje: 'Error interno del servidor al crear el conductor.', error: error.message});
   }
 };
 

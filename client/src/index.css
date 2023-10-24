@@ -13,5 +13,6 @@ body{
   background-image: url("./a.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 120vh;
+  background-attachment: fixed;
   text-align: center;
 }

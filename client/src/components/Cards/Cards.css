@@ -1,0 +1,46 @@
+.cards{
+  max-width: 90vw;
+}
+
+.pagination, .content{
+  width: 100%;
+  margin: 20px;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.pagination{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  align-items: center;
+  background-color: #0f0f0fec;
+} 
+
+.content{
+  background-color: #0f0f0fec;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: center;
+}
+
+.page-button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: grey;
+  cursor: pointer;
+  width: 55px;
+}
+
+.page-button.active {
+  background-color: #79070a;
+}
+
