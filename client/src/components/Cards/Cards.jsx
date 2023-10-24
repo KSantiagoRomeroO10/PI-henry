@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const Cards = ({ drivers }) => {
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const tamaño = 9;
   let inicio = 0;

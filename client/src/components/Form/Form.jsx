@@ -47,7 +47,7 @@ const Form = () => {
       imagen,
       nacionalidad,
       fechaNacimiento,
-      teams,
+      teams
     };
 
     try {

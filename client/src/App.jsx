@@ -54,7 +54,6 @@ function App() {
         <Route path='/home' element={ <Cards drivers={drivers}/> }/>
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/form' element={<Form/>}/>
-
       </Routes>
     </>
   )
