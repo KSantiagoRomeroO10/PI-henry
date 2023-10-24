@@ -30,7 +30,7 @@ const Form = () => {
   const handleTeamsChange = (e) => {
     const teams = e.target.value
     if (!validateTeams(teams)) {
-      setTeamsError('Solo se aceptan letras y comas en los equipos')
+      setTeamsError('Solo se aceptan letras, números y comas para separar los equipos')
     } else {
       setTeamsError('')
     }
